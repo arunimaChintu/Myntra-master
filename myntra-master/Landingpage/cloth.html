@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Recommended Clothing</title>
+    <link rel="stylesheet" href="/Common Files/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="header.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .header img {
+            max-height: 60px;
+            position: absolute;
+            left: 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+        .filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .filter-button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+        }
+        .filter-button.active {
+            background-color: #0056b3;
+        }
+        .clothing-table {
+            width: 100%;
+            border-spacing: 20px;
+        }
+        .clothing-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .clothing-item img {
+            max-width: 100px;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+        .clothing-item-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .clothing-item-info h2 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+        .clothing-item-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .clothing-item-info .price {
+            color: #e91e63;
+            font-weight: bold;
+        }
+        .tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e91e63;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .tag.fast-delivery {
+            background-color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <img src="/Common Files/image/myntra-removebg-preview.png" alt="brandLogo" id="landingPage">
+        </div>
+        <ul id="nav_bar">
+            <li id="megamenu_container"><a href="../Homepages/menHomePage.html">men</a></li>
+            <li><a href="../Homepages/womenHomePage.html">women</a></li>
+            <li><a href="#">kids</a></li>
+            <li><a href="../Homepages/homeLiving.html">home & living</a></li>
+            <li><a href="#">beauty</a></li>
+            <li id="studio"><a href="#">studio</a><span>new</span></li>
+            <li id="studio"><a href="../Landingpage/reels1.html">Reels</a><span>new</span></li>
+        </ul> 
+        <div id="search">
+            <input type="text" id="search_bar" placeholder="Search for products, brands and more">
+            <i class="fa-solid fa-magnifying-glass" id="search_icon"></i>
+        </div>
+        <div id="right_icon">
+            <div id="reggDropdown">
+                <!-- DROPDOWN MENU TO BE CREATED FOR LOGIN AND SIGNUP -->
+              <div id="drop">
+                  <a href="/Profile/profile.html" class="dropList">login</a>
+                  <a href="/Profile/signup.html" class="dropList">sign up</a>
+              </div>
+
+              <i class="fa-regular fa-user"></i>
+              <span>profile</span> 
+             
+          </div>
+            <div>
+                <i class="fa-regular fa-heart"></i>
+                <span>wishlist</span>
+            </div>
+            <div>
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>bag</span>
+            </div>
+        </div>
+                   <!-- TOGGLE MENU -->
+                   <div id="toggle">
+                    <i class='bx bx-menu dropbtn' onclick="myFunction()"></i>
+                    <div id="myDropdown" class="dropdown-content">
+                        <div class="top">
+                            <a href="../Homepages/menHomePage.html">men</a>
+                            <a href="../Homepages/womenHomePage.html">women</a>
+                            <a href="#">kids</a>
+                            <a href="../Homepages/homeLiving.html">home & living</a>
+                            <a href="#">beauty</a>
+                            <a href="#">studio</a>
+                        </div>
+                        <div class="bottom">
+                            <i class="fa-regular fa-user fa_user" id="profile"></i>
+                            <i class="fa-regular fa-heart fa_wishlist"></i>
+                            <i class="fa-solid fa-bag-shopping fa_cart"></i>
+                        </div>               
+                    </div>
+                </div>
+    </header>
+
+    <div class="container">
+        <div class="header">
+            <!-- <img src="myntra logo.png" alt="Myntra Logo"> -->
+            <h1>Top 10 Recommended Clothing for You</h1>
+        </div>
+        <div class="filters">
+            <button class="filter-button" onclick="filterItems('top-brands')">Top Brands</button>
+            <button class="filter-button" onclick="filterItems('top-rated')">Top Rated</button>
+            <button class="filter-button" onclick="filterItems('fast-delivery')">Fast Delivery</button>
+        </div>
+        <table class="clothing-table" id="clothing-list">
+            <!-- Clothing items will be inserted here -->
+        </table>
+    </div>
+
+
+    <script>
+        const clothingItems = [
+            {
+                name: "Meeransshi",
+                price: "$500",
+                image: "imag/kurta 1.jpg",
+                description: "Khushal K Women Black Ethnic Motifs Printed Kurta with Palazzos & With Dupatta.",
+                brand: "Top Brand",
+                rating: 4.5,
+                delivery: "Fast Delivery"
+            },
+            {
+                name: "KALINI",
+                price: "$459",
+                image: "imag/kurta 2.jpg",
+                description: "InWeave Women Orange Solid Kurta with Palazzos & Floral Print Dupatta.",
+                brand: "Top Brand",
+                rating: 4.7,
+                delivery: "Standard Delivery"
+            },
+            {
+                name: "Stylum",
+                price: "$567",
+                image: "imag/kurta 3.jpg",
+                description: "Anubhutee Women Navy Blue Ethnic Motifs Embroidered Thread Work Kurta with Trousers & With Dupatta.",
+                brand: "Top Brand",
+                rating: 4.2,
+                delivery: "Fast Delivery"
+            },
+            {
+                name: "Fubar",
+                price: "$675",
+                image: "imag/kurta 4.jpg",
+                description: "Nayo Women Red Floral Printed Kurta With Trouser & Dupatta.",
+                brand: "Standard Brand",
+                rating: 4.8,
+                delivery: "Standard Delivery"
+            },
+            {
+                name: "SAK JAIPUR",
+                price: "$499",
+                image: "imag/kurta 5.jpg",
+                description: "AHIKA Women Black & Green Printed Straight Kurta.",
+                brand: "Standard Brand",
+                rating: 4.1,
+                delivery: "Fast Delivery"
+            },
+            {
+                name: "Sangria",
+                price: "$765",
+                image: "imag/kurta 6.jpg",
+                description: "Libas Women Navy Blue Pure Cotton Floral Print Kurta with Palazzos & Dupatta.",
+                brand: "Top Brand",
+                rating: 4.9,
+                delivery: "Fast Delivery"
+            },
+            {
+                name: "HERE&NOW",
+                price: "$678",
+                image: "imag/kurta 7.jpg",
+                description: "Ahalyaa Women Beige Floral Printed Regular Gotta Patti Kurta with Palazzos & With Dupatta.",
+                brand: "Top Brand",
+                rating: 4.6,
+                delivery: "Standard Delivery"
+            },
+            {
+                name: "Libas",
+                price: "$459",
+                image: "imag/kurta 8.jpg",
+                description: "nouk Women Yellow & White Printed Kurta with Palazzos.",
+                brand: "Top Brand",
+                rating: 4.3,
+                delivery: "Fast Delivery"
+            },
+            {
+                name: "Anouk",
+                price: "$626",
+                image: "imag/kurta 9.jpg",
+                description: "Khushal K Women Green & Pink Printed Pure Cotton Kurta with Palazzos & Dupatta.",
+                brand: "Standard Brand",
+                rating: 4.0,
+                delivery: "Fast Delivery"
+            },
+            {
+                name: "Ananya",
+                price: "$539",
+                image: "imag/kurta 10.jpg",
+                description: "Libas Floral Bliss Side Pocket Cotton Kurta Set.",
+                brand: "Top Brand",
+                rating: 4.5,
+                delivery: "Standard Delivery"
+            },
+        ];
+
+        const clothingList = document.getElementById('clothing-list');
+
+        const createClothingCell = (item) => {
+            const cell = document.createElement('td');
+            const clothingItem = document.createElement('div');
+            clothingItem.classList.add('clothing-item');
+
+            const img = document.createElement('img');
+            img.src = item.image;
+            img.alt = item.name;
+
+            const info = document.createElement('div');
+            info.classList.add('clothing-item-info');
+
+            const name = document.createElement('h2');
+            name.textContent = item.name;
+
+            const price = document.createElement('p');
+            price.classList.add('price');
+            price.textContent = item.price;
+
+            const description = document.createElement('p');
+            description.textContent = item.description;
+
+            if (item.rating >= 4.5) {
+                const topRatedTag = document.createElement('div');
+                topRatedTag.classList.add('tag');
+                topRatedTag.textContent = 'Top Rated';
+                clothingItem.appendChild(topRatedTag);
+            }
+
+            if (item.delivery === 'Fast Delivery') {
+                const fastDeliveryTag = document.createElement('div');
+                fastDeliveryTag.classList.add('tag', 'fast-delivery');
+                fastDeliveryTag.textContent = 'Fast Delivery';
+                clothingItem.appendChild(fastDeliveryTag);
+            }
+
+            info.appendChild(name);
+            info.appendChild(price);
+            info.appendChild(description);
+
+            clothingItem.appendChild(img);
+            clothingItem.appendChild(info);
+
+            cell.appendChild(clothingItem);
+
+            return cell;
+        };
+
+        const displayClothingItems = (items) => {
+            clothingList.innerHTML = '';
+
+            for (let i = 0; i < items.length; i += 2) {
+                const row = document.createElement('tr');
+
+                row.appendChild(createClothingCell(items[i]));
+
+                if (i + 1 < items.length) {
+                    row.appendChild(createClothingCell(items[i + 1]));
+                } else {
+                    const emptyCell = document.createElement('td');
+                    row.appendChild(emptyCell);
+                }
+
+                clothingList.appendChild(row);
+            }
+        };
+
+        const filterItems = (filter) => {
+            let filteredItems;
+            if (filter === 'top-brands') {
+                filteredItems = clothingItems.filter(item => item.brand === 'Top Brand');
+            } else if (filter === 'top-rated') {
+                filteredItems = clothingItems.filter(item => item.rating >= 4.5);
+            } else if (filter === 'fast-delivery') {
+                filteredItems = clothingItems.filter(item => item.delivery === 'Fast Delivery');
+            } else {
+                filteredItems = clothingItems;
+            }
+            displayClothingItems(filteredItems);
+
+            document.querySelectorAll('.filter-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.filter-button[onclick="filterItems('${filter}')"]`).classList.add('active');
+        };
+
+        // Initial display of all items
+        displayClothingItems(clothingItems);
+    </script>
+</body>
+</html>
