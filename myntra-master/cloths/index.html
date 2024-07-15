@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Myntra Women Kurta</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  margin-right: 20px;
+}
+
+.nav li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  width: 300px;
+}
+
+.search-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+}
+
+.user-icon {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.main {
+  padding: 20px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: #666;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.filter-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.filters {
+  width: 25%;
+}
+
+.filter-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.filter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.filter-list li {
+  margin-bottom: 5px;
+}
+
+.filter-list li input {
+  margin-right: 5px;
+}
+
+.products {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product {
+  width: 23%;
+  margin-bottom: 20px;
+}
+
+.product-image {
+  width: 79%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 10px;
+}
+
+.product-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  color: #ff9900;
+}
+
+.product-rating span {
+  margin-left: 5px;
+}
+
+.product-discount {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.product-new {
+  background-color: #00ff00;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+</style>
+</head>
+<body>
+<header class="header">
+  <img src="myntra logo.png" alt="Myntra Logo" class="logo">
+  <nav class="nav">
+    <li><a href="#">MEN</a></li>
+    <li><a href="#">WOMEN</a></li>
+    <li><a href="#">KIDS</a></li>
+    <li><a href="#">HOME & LIVING</a></li>
+    <li><a href="#">BEAUTY</a></li>
+    <li><a href="#">STUDIO</a></li>
+  </nav>
+  <div class="search-bar">
+    <input type="text" placeholder="Search for products, brands and more" class="search-input">
+    <i class="fas fa-search search-icon"></i>
+  </div>
+  <div class="user-actions">
+    <i class="fas fa-user user-icon"></i>
+    <i class="fas fa-heart user-icon"></i>
+    <i class="fas fa-shopping-bag user-icon"></i>
+  </div>
+</header>
+
+<main class="main">
+  <div class="breadcrumb">Home / Clothing / Kurtas / Women Kurta</div>
+  <h1 class="title">Women Kurta - Top 10 recommendations for you</h1>
+
+  <div class="filter-section">
+    <div class="filters">
+      <h2 class="filter-title">BRAND</h2>
+      <ul class="filter-list">
+        <li><input type="checkbox"> KALINI (7917)</li>
+        <li><input type="checkbox"> Ethnic basket (2679)</li>
+        <li><input type="checkbox"> Anouk (2488)</li>
+        <li><input type="checkbox"> W (1898)</li>
+        <li><input type="checkbox"> Sangria (1883)</li>
+        <li><input type="checkbox"> 7Threads (1681)</li>
+        <li><input type="checkbox"> SHOWOFF (1674)</li>
+        <li><input type="checkbox"> 1 Stop Fashion (1658)</li>
+        <li><a href="#">+ 955 more</a></li>
+      </ul>
+      <h2 class="filter-title">PRICE</h2>
+      <ul class="filter-list">
+        <li><input type="checkbox"> Rs. 199 to Rs. 13775 (75260)</li>
+      </ul>
+    </div>
+    <div class="products">
+      <div class="product">
+        <div class="product-new">NEW</div>
+        <img src="kurta 1.jpg" alt="Product 1" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">KALINI</h3>
+          <p class="product-description">Khushal K Women Black Ethnic Motifs Printed Kurta with Palazzos & With Dupatta."</p>
+          <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <span>3.1</span>
+          </div>
+          <p class="product-price">₹300</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="kurta 2.jpg" alt="Product 2" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">R&B</h3>
+          <p class="product-description">InWeave Women Orange Solid Kurta with Palazzos & Floral Print Dupatta</p>
+          <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>3.4</span>
+          </div>
+          <p class="product-price">₹459</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="kurta 3.jpg" alt="Product 3" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">KALINI</h3>
+          <p class="product-description">Anubhutee Women Navy Blue Ethnic Motifs Embroidered Thread Work Kurta with Trousers & With Dupatta</p>
+          <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>3.9</span>
+          </div>
+          <p class="product-price">₹3.8k</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="kurta 4.jpg" alt="Product 3" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">KALINI</h3>
+          <p class="product-description">Nayo Women Red Floral Printed Kurta With Trouser & Dupatta</p>
+          <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>3.9</span>
+          </div>
+          <p class="product-price">₹3.8k</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="kurta 5.jpg" alt="Product 3" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">KALINI</h3>
+          <p class="product-description">AHIKA Women Black & Green Printed Straight Kurta</p>
+          <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>3.9</span>
+          </div>
+          <p class="product-price">₹3.8k</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="kurta 6.jpg" alt="Product 3" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">KALINI</h3>
+          <p class="product-description">Libas Women Navy Blue Pure Cotton Floral Print Kurta with Palazzos & Dupatta</p>
+          <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>3.9</span>
+          </div>
+          <p class="product-price">₹3.8k</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="kurta 7.jpg" alt="Product 3" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">KALINI</h3>
+          <p class="product-description">Ahalyaa Women Beige Floral Printed Regular Gotta Patti Kurta with Palazzos & With Dupatta</p>
+          <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>3.9</span>
+          </div>
+          <p class="product-price">₹3.8k</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="kurta 8.jpg" alt="Product 3" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">KALINI</h3>
+          <p class="product-description">nouk Women Yellow & White Printed Kurta with Palazzos</p>
+          <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>3.9</span>
+          </div>
+          <p class="product-price">₹3.8k</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="kurta 9.jpg" alt="Product 3" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">KALINI</h3>
+          <p class="product-description">Khushal K Women Green & Pink Printed Pure Cotton Kurta with Palazzos & Dupatta</p>
+          <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>3.9</span>
+          </div>
+          <p class="product-price">₹3.8k</p>
+        </div>
+      </div>
+      <div class="product">
+        <img src="kurta 10.jpg" alt="Product 3" class="product-image">
+        <div class="product-info">
+          <h3 class="product-title">KALINI</h3>
+          <p class="product-description">Libas Floral Bliss Side Pocket Cotton Kurta Set</p>
+          <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span>3.9</span>
+          </div>
+          <p class="product-price">₹3.8k</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</body>
+</html>

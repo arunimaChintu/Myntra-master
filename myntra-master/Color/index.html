@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      width: 50%;
+      height: 50%;
+    }
+    .example-container {
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      margin-left: 20px;
+      /* margin-top: 30px; */
+    }
+    .options-panel {
+      position: fixed;
+      left: 10px;
+      top: 10px;
+      z-index: 2;
+      background-color: white;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+    }
+    .options-panel img {
+      border: solid 2px transparent;
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .options-panel img.selected {
+      border-color: green;
+    }
+    #capture {
+      position: fixed;
+      bottom: 10px;
+      padding: 10px 20px;
+      /* background-color: #008CBA; */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1;
+      margin: 30px;
+    color: #121212;
+    }
+    #suggestColors{
+      position: fixed;
+      bottom: 10px;
+      padding: 10px 20px;
+      /* background-color: #008CBA; */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1;
+      margin: 30px;
+      margin-right: 50px;
+    color: #121212;
+    }
+    #capture {
+      right: 10px;
+    }
+    #suggestColors {
+      right: 150px;
+    }
+    #confirmationDialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 99999;
+      border-radius: 10px 10px;
+    }
+    #confirmationDialog button {
+      margin: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    #colorSuggestion {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 20px;
+      width: 100px;
+      background-color: #fff;
+      font-family: Inter,sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-right: 20px;
+      z-index: 9;
+      border-radius: 10px 10px;
+    }
+    #colorSuggestion h3 {
+        margin: 0px;
+      font-size: 16px;
+      color: #333;
+    }
+    .color-box {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin-right: 5px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    .button-35 {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s,-webkit-box-shadow .2s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-35:hover {
+  box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+}
+  </style>
+</head>
+<body>
+  <div class="example-container">
+    <div id="colorSuggestion">
+      <h3>Suggestions</h3>
+      <div id="suggestedColors" style="justify-content: center; display: flex; flex-direction: column;"></div> 
+    </div>
+    <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-camera active="false" position="0 0 0"></a-camera>
+    </a-scene>
+    <button id="capture" class="button-35">Screenshot</button>
+    <button id="suggestColors" class="button-35" >Suggestions</button>
+    <div id="confirmationDialog">
+      <p>Are you sure you want to take a screenshot?</p>
+      <button id="yesButton" class="button-35">Yes</button>
+      <button id="noButton" class="button-35">No</button>
+    </div>
+  </div>
+  <script>
+    document.getElementById('capture').addEventListener('click', () => {
+      document.getElementById('confirmationDialog').style.display = 'block';
+    });
+
+    document.getElementById('yesButton').addEventListener('click', () => {
+      document.getElementById('confirmationDialog').style.display = 'none';
+      captureScreenshot(analyzeSkinToneAndSuggestColors);
+    });
+
+    document.getElementById('noButton').addEventListener('click', () => {
+      document.getElementById('confirmationDialog').style.display = 'none';
+    });
+
+    document.getElementById('suggestColors').addEventListener('click', () => {
+      analyzeSkinToneAndSuggestColors();
+    });
+
+    function captureScreenshot(callback) {
+      const video = document.createElement('video');
+      const constraints = {
+        video: true
+      };
+
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then(function(stream) {
+          video.srcObject = stream;
+          video.play();
+
+          video.addEventListener('loadedmetadata', function() {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            setTimeout(function() {
+              context.drawImage(video, 0, 0, canvas.width, canvas.height);
+              video.pause(); // Pause the video to ensure the frame is captured
+              const imgDataUrl = canvas.toDataURL('image/png');
+
+              // Create a link element to download the image
+              const link = document.createElement('a');
+              link.href = imgDataUrl;
+              link.download = 'screenshot.png';
+
+              // Append the link to the body and click it programmatically
+              document.body.appendChild(link);
+              link.click();
+
+              // Clean up: remove the link element from the DOM
+              document.body.removeChild(link);
+
+              // Call the callback with the image data URL
+              callback(imgDataUrl);
+              stream.getTracks().forEach(track => track.stop()); // Stop the video stream
+            }, 1000); // Adjust the delay as needed for performance
+          });
+        })
+        .catch(function(error) {
+          console.error('Error accessing camera:', error);
+        });
+    }   
+
+    function analyzeSkinToneAndSuggestColors() {
+      const video = document.createElement('video');
+      const constraints = {
+        video: true
+      };
+
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then(function(stream) {
+          video.srcObject = stream;
+          video.play();
+
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+
+          video.addEventListener('loadedmetadata', function() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            setTimeout(function() {
+              context.drawImage(video, 0, 0, canvas.width, canvas.height);
+              const imageDataUrl = canvas.toDataURL('image/png');
+              video.pause(); // Pause the video to ensure the frame is captured
+              analyzeSkinTone(imageDataUrl, function(skinTone) {
+                const suggestedColors = getSuggestedColors(skinTone);
+                displaySuggestedColors(suggestedColors);
+                stream.getTracks().forEach(track => track.stop()); // Stop the video stream
+              });
+            }, 1000); // Adjust the delay as needed for performance
+          });
+        })
+        .catch(function(error) {
+          console.error('Error accessing camera:', error);
+        });
+    }
+
+    function analyzeSkinTone(imageDataUrl, callback) {
+      const image = new Image();
+      image.crossOrigin = "Anonymous";
+      image.onload = function() {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = image.width;
+        canvas.height = image.height;
+        context.drawImage(image, 0, 0, image.width, image.height);
+
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const skinTone = calculateAverageSkinTone(imageData);
+
+        callback(skinTone);
+      };
+      image.src = imageDataUrl;
+    }
+
+    function calculateAverageSkinTone(imageData) {
+      let r = 0, g = 0, b = 0, count = 0;
+
+      for (let i = 0; i < imageData.data.length; i += 4) {
+        r += imageData.data[i];
+        g += imageData.data[i + 1];
+        b += imageData.data[i + 2];
+        count++;
+      }
+
+      r = Math.floor(r / count);
+      g = Math.floor(g / count);
+      b = Math.floor(b / count);
+
+      // Simple logic to determine skin tone; can be improved
+      if (r > 200 && g > 180 && b > 150) return 'light';
+      if (r > 150 && g > 100 && b > 50) return 'medium';
+      return 'dark';
+    }
+
+    function getSuggestedColors(skinTone) {
+      const skinToneToColors = {
+        'light': ['#FFDDC1', '#FFE4E1', '#F5DEB3', '#F0E68C', '#E6E6FA', '#FFFACD'],
+        'medium': ['#D2B48C', '#DEB887', '#CD853F', '#F4A460', '#BC8F8F', '#D2691E'],
+        'dark': ['#8B4513', '#A52A2A', '#800000', '#5F9EA0', '#556B2F', '#8B0000']
+      };
+      return skinToneToColors[skinTone] || [];
+    }
+
+    function displaySuggestedColors(colors) {
+      const suggestedColorsDiv = document.getElementById('suggestedColors');
+      suggestedColorsDiv.innerHTML = ''; // Clear previous suggestions
+      colors.forEach(color => {
+        const colorBox = document.createElement('div');
+        colorBox.className = 'color-box';
+        colorBox.style.backgroundColor = color;
+        colorBox.style.borderRadius = "10px 10px";
+        colorBox.style.width = "100%";
+        colorBox.style.marginTop = "10px";
+        colorBox.title = color;
+        suggestedColorsDiv.appendChild(colorBox);
+      });
+    }
+  </script>
+</body>
+</html>

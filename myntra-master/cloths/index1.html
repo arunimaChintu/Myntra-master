@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Myntra</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+header {
+  background-color: #fff;
+  padding: 15px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.logo {
+  height: 40px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.search-box {
+  position: relative;
+  width: 350px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-box button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.profile-buttons button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.profile-buttons img {
+  width: 25px;
+  height: 25px;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.icon p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.filter-label {
+  margin-right: 3px;
+}
+.filters input {
+  margin-bottom: 2px;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.categories input {
+  margin-right: 10px;
+}
+
+.categories button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product {
+  width: 230px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+}
+
+.product img {
+  width: 103%;
+  height: 306px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.product h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product .price {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.product .discount {
+  font-size: 12px;
+  color: #008000;
+}
+
+.sort {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sort select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.special-offer {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background-color: #f00;
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.special-offer .new {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: #008000;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <img src="myntra logo.png" alt="Myntra Logo" class="logo">
+      <nav>
+        <ul>
+          <li><a href="#">MEN</a></li>
+          <li><a href="#">WOMEN</a></li>
+          <li><a href="#">KIDS</a></li>
+          <li><a href="#">HOME & LIVING</a></li>
+          <li><a href="#">BEAUTY</a></li>
+          <li><a href="#">STUDIO</a></li>
+        </ul>
+      </nav>
+      <div class="search-box">
+        <input type="text" placeholder="Search for products, brands and more">
+        <button><i class="fas fa-search"></i></button>
+      </div>
+      <div class="profile-buttons">
+        <div class="icon">
+          <img src="profile.jpeg" alt="Profile Logo" width="24" height="24">
+          <p>Profile</p>
+        </div>
+        <div class="icon">
+          <img src="wishlist.jpeg" alt="Wishlist Logo" width="24" height="24">
+          <p>Wishlist</p>
+        </div>
+        <div class="icon">
+          <img src="bag.jpeg" alt="Bag Logo" width="24" height="24">
+          <p>Bag</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <div class="section-title">Trending Fashion for Maharastrian Culture</div>
+    <div class="container">
+      <div class="filters">
+        <h3>FILTERS</h3>
+        <input type="checkbox" id="men" name="gender">
+        <label for="men">Men</label>
+        <input type="checkbox" id="women" name="gender">
+        <label for="women">Women</label>
+        <input type="checkbox" id="boys" name="gender">
+        <label for="boys">Boys</label>
+        <input type="checkbox" id="girls" name="gender">
+        <label for="girls">Girls</label>
+        <h3>CATEGORIES</h3>
+        <input type="checkbox" id="kurta-sets" name="category">
+        <label for="kurta-sets">Kurta Sets</label>
+        <input type="checkbox" id="tops" name="category">
+        <label for="tops">Tops</label>
+        <input type="checkbox" id="scarves" name="category">
+        <label for="scarves">Scarves</label>
+        <input type="checkbox" id="tshirts" name="category">
+        <label for="tshirts">Tshirts</label>
+        <input type="checkbox" id="shirts" name="category">
+        <label for="shirts">Shirts</label>
+        <input type="checkbox" id="dresses" name="category">
+        <label for="dresses">Dresses</label>
+        <input type="checkbox" id="bedsheets" name="category">
+        <label for="bedsheets">Bedsheets</label>
+      </div>
+      <div class="products">
+        <div class="product" data-product-id="1">
+          <img src="trend 11.jpg" alt="Watch" class="product-img">
+          <div class="wishlist-icon">
+          </div>
+          <h4>Trending Marathi Aarrah</h4>
+          <p class="price">Rs. 4999</p>
+          <p class="discount">Rs. 5999 (Rs. 1000 OFF)</p>
+        </div>
+        <div class="product" data-product-id="2">
+          <img src="trend 2.jpg" alt="Jacket" class="product-img">
+          <div class="wishlist-icon">
+          </div>
+          <h4>Trending Maharastrian saree</h4>
+          <p class="price">Rs. 1439</p>
+          <p class="discount">Rs. 1799 (20% OFF)</p>
+        </div>
+        <div class="product" data-product-id="3">
+          <img src="trend 3.jpg" alt="Lipstick" class="product-img">
+          <div class="wishlist-icon">
+          </div>
+          <h4>Trending Paithani Saree</h4>
+          <p class="price">Rs. 384</p>
+          <p class="discount">Rs. 699 (45% OFF)</p>
+        </div>
+        <div class="product" data-product-id="4">
+          <img src="trend 4.jpg" alt="Joggers" class="product-img">
+          <div class="wishlist-icon">
+          </div>
+          <h4>Trending Bandhani Saree</h4>
+          <p class="price">Rs. 1039</p>
+          <p class="discount">Rs. 1299 (20% OFF)</p>
+        </div>
+        <div class="product" data-product-id="5">
+            <img src="trend 5.jpg" alt="Joggers" class="product-img">
+            <div class="wishlist-icon">
+
+            </div>
+            <h4>Trending Bomaki saree</h4>
+            <p class="price">Rs. 1039</p>
+            <p class="discount">Rs. 1299 (20% OFF)</p>
+          </div>
+          <div class="product" data-product-id="6">
+            <img src="treen.jpg" alt="Joggers" class="product-img">
+            <div class="wishlist-icon">
+
+            </div>
+            <h4>Trending Tant saree</h4>
+            <p class="price">Rs. 1039</p>
+            <p class="discount">Rs. 1299 (20% OFF)</p>
+          </div>
+          <div class="product" data-product-id="7">
+            <img src="trend 7.jpg" alt="Joggers" class="product-img">
+            <div class="wishlist-icon">
+
+            </div>
+            <h4>Trending Chandeni saree</h4>
+            <p class="price">Rs. 1039</p>
+            <p class="discount">Rs. 1299 (20% OFF)</p>
+          </div>
+          <div class="product" data-product-id="8">
+            <img src="trend 12.png" alt="Joggers" class="product-img">
+            <div class="wishlist-icon">
+
+            </div>
+            <h4>Trending Nauvari saree</h4>
+            <p class="price">Rs. 1039</p>
+            <p class="discount">Rs. 1299 (20% OFF)</p>
+          </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="special-offer">
+    FLAT ₹400 OFF
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
